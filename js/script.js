@@ -132,7 +132,7 @@ function setMessage(form, message, type = 'success') {
     const box = form.querySelector('.form-message');
     if (!box) return;
     box.textContent = message;
-    box.className = \`form-message show \${type}\`;
+    box.className = `form-message show ${type}`;
 }
 
 function validateRequired(form) {
