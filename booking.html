@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your eco-adventure with EcoXplore using Bootstrap 5.">
+    <title>Book Now | EcoXplore Adventures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="40" height="40">
+                EcoXplore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5 my-5">
+        <div class="row g-5">
+            <div class="col-lg-8 reveal">
+                <div class="glass p-5 rounded-4 shadow-sm h-100">
+                    <h1 class="mb-4 display-5 fw-bold">Adventure Booking</h1>
+                    <p class="lead mb-5">Submit a booking inquiry with your preferred package, travel date, and group
+                        details.</p>
+                    <div class="form-message mb-4" role="status" aria-live="polite"></div>
+
+                    <form id="bookingForm" class="needs-validation">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="bookName" class="form-label fw-bold">Lead Explorer Name</label>
+                                <input type="text" class="form-control py-3 rounded-3" id="bookName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookEmail" class="form-label fw-bold">Email Address</label>
+                                <input type="email" class="form-control py-3 rounded-3" id="bookEmail"
+                                    autocomplete="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bookPhone" class="form-label fw-bold">Phone Number</label>
+                                <input type="tel" class="form-control py-3 rounded-3" id="bookPhone" autocomplete="tel"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="tourSelect" class="form-label fw-bold">Select Adventure</label>
+                                <select class="form-select py-3 rounded-3" id="tourSelect" required>
+                                    <option value="" selected disabled>Choose a package...</option>
+                                    <option value="hiking">Knuckles Mountain Eco-Trek</option>
+                                    <option value="camping">Solar Night Eco-Camp</option>
+                                    <option value="rafting">Wild Waters Rafting</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="preferredDate" class="form-label fw-bold">Preferred Date</label>
+                                <input type="date" class="form-control py-3 rounded-3" id="preferredDate" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="travelers" class="form-label fw-bold">Number of Travelers</label>
+                                <input type="number" class="form-control py-3 rounded-3" id="travelers" min="1" max="10"
+                                    required>
+                            </div>
+                            <div class="col-12">
+                                <label for="specialReq" class="form-label fw-bold">Special Requirements / Dietary
+                                    Needs</label>
+                                <textarea class="form-control rounded-3" id="specialReq" rows="3"></textarea>
+                            </div>
+                            <div class="col-12 pt-3">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Submit Booking
+                                    Inquiry</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4 reveal" style="transition-delay: 0.2s;">
+                <div class="booking-reasons-panel p-4 rounded-4 shadow-lg h-100">
+                    <p class="section-kicker mb-2" style="color: var(--accent);">Special reasons to choose us</p>
+                    <h3 class="mb-3 text-white">Why Book With Us</h3>
+                    <p class="mb-4 text-white-50">EcoXplore is designed for travelers who want real adventure without
+                        harming the places they visit.</p>
+                    <div class="booking-benefits">
+                        <div class="booking-benefit">
+                            <span class="booking-benefit-number">1</span>
+                            <div>
+                                <h4>Responsible Adventure Planning</h4>
+                                <p>Every route uses low-impact travel methods, reusable equipment, and clear
+                                    environmental guidelines.</p>
+                            </div>
+                        </div>
+                        <div class="booking-benefit">
+                            <span class="booking-benefit-number">2</span>
+                            <div>
+                                <h4>Certified Local Eco-Guides</h4>
+                                <p>Guides know the trails, safety standards, wildlife zones, and local community rules.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="booking-benefit">
+                            <span class="booking-benefit-number">3</span>
+                            <div>
+                                <h4>Small Groups, Better Care</h4>
+                                <p>Group sizes are limited to 10 so each traveler gets support and each destination
+                                    stays protected.</p>
+                            </div>
+                        </div>
+                        <div class="booking-benefit">
+                            <span class="booking-benefit-number">4</span>
+                            <div>
+                                <h4>Community and Nature Support</h4>
+                                <p>A portion of every booking supports local suppliers, conservation work, and tree
+                                    planting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="images/camping.png" alt="Eco camping tour location" class="booking-side-image">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">EcoXplore Adventures</h2>
+            <p>&copy; 2024 EcoXplore Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

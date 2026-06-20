@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access EcoXplore Adventures with Bootstrap 5.">
+    <title>Account Access | EcoXplore Adventures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .auth-wrapper {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg), var(--primary-light));
+            padding: 50px 0;
+        }
+        .auth-card {
+            max-width: 526px;
+            margin: 0 auto;
+        }
+        .auth-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            background: #f4f7f2;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.35rem;
+            margin-bottom: 1.75rem;
+        }
+        .auth-toggle button {
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text);
+            font-weight: 800;
+            padding: 0.8rem 1rem;
+            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .auth-toggle button.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.22);
+        }
+        .auth-tab-panel {
+            display: none;
+        }
+        .auth-tab-panel.active {
+            display: block;
+        }
+        .auth-card h1,
+        .auth-card h2 {
+            font-size: clamp(1.85rem, 4vw, 2.25rem);
+        }
+        @media (max-width: 576px) {
+            .auth-wrapper {
+                padding: 28px 0;
+                align-items: flex-start;
+            }
+            .auth-toggle button {
+                padding: 0.7rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="40" height="40">
+                EcoXplore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="auth-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="glass p-5 rounded-4 shadow reveal auth-card">
+                        <div class="auth-toggle" id="authTab" role="tablist" aria-label="Account access options">
+                            <button class="active" id="signup-tab" type="button" role="tab" aria-selected="true" aria-controls="signup-panel" data-auth-target="signup-panel">Sign Up</button>
+                            <button id="login-tab" type="button" role="tab" aria-selected="false" aria-controls="login-panel" data-auth-target="login-panel">Login</button>
+                        </div>
+                        <div id="authTabContent">
+                            <div class="auth-tab-panel active" id="signup-panel" role="tabpanel" aria-labelledby="signup-tab">
+                                <h2 class="text-center mb-4">Join the Discovery</h2>
+                                <form id="signupForm">
+                                    <div class="form-message mb-3" role="status" aria-live="polite"></div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control py-3" id="regName" placeholder="Full Name" autocomplete="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control py-3" id="regEmail" placeholder="Email Address" autocomplete="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control py-3" id="regPassword" placeholder="Create Password" autocomplete="new-password" minlength="6" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 py-3 mt-2">Create Account</button>
+                                </form>
+                            </div>
+                            <div class="auth-tab-panel" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+                                <h2 class="text-center mb-4">Welcome Back</h2>
+                                <form id="loginForm">
+                                    <div class="form-message mb-3" role="status" aria-live="polite"></div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control py-3" id="loginEmail" placeholder="Email Address" autocomplete="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control py-3" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 py-3 mt-2">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">EcoXplore Adventures</h2>
+            <p>&copy; 2024 EcoXplore Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        function toggleAuth(mode) {
+            const targetId = mode === 'login' ? 'login-panel' : 'signup-panel';
+            document.querySelectorAll('[data-auth-target]').forEach((button) => {
+                const isActive = button.dataset.authTarget === targetId;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-selected', String(isActive));
+            });
+            document.querySelectorAll('.auth-tab-panel').forEach((panel) => {
+                panel.classList.toggle('active', panel.id === targetId);
+            });
+        }
+
+        document.querySelectorAll('[data-auth-target]').forEach((button) => {
+            button.addEventListener('click', () => toggleAuth(button.dataset.authTarget === 'login-panel' ? 'login' : 'signup'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact EcoXplore Adventures using Bootstrap 5.">
+    <title>Contact Us | EcoXplore Adventures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.8)), url('images/forest.png') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="40" height="40">
+                EcoXplore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="contact-hero reveal">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Get In Touch</h1>
+            <p class="lead">We're here to help you plan your next sustainable adventure.</p>
+        </div>
+    </header>
+
+    <main class="container py-5 my-5">
+        <div class="row g-5">
+            <div class="col-lg-7 reveal">
+                <div class="glass p-5 rounded-4 shadow-sm h-100">
+                    <h2 class="mb-4">Send a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-message mb-4" role="status" aria-live="polite"></div>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label fw-bold">Full Name</label>
+                                <input type="text" class="form-control py-3 rounded-3" id="name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-bold">Email Address</label>
+                                <input type="email" class="form-control py-3 rounded-3" id="email" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" class="form-label fw-bold">Subject</label>
+                                <input type="text" class="form-control py-3 rounded-3" id="subject" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-bold">Your Message</label>
+                                <textarea class="form-control rounded-3" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-5 reveal" style="transition-delay: 0.2s;">
+                <div class="mb-5">
+                    <h2 class="mb-4">Common Questions</h2>
+                    <div class="accordion accordion-flush glass p-2 rounded-4" id="faqAccordion">
+                        <div class="accordion-item glass border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Are tours suitable for beginnersIncluded:
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! We have packages for all skill levels. Our guides provide all necessary training and support.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item glass border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What equipment do I needIncluded:
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We provide all technical gear (tents, rafts, packs). You only need to bring personal clothing and sturdy shoes.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info-card p-4 rounded-4 shadow-sm">
+                    <h3>Contact Information</h3>
+                    <p class="mb-2"> 123 Eco Road, Colombo 10, Sri Lanka</p>
+                    <p class="mb-2"> +94 0771234567</p>
+                    <p class="mb-3"> hello@ecoxplore.com</p>
+                    <div class="map-container mt-4 rounded-3 overflow-hidden">
+                        <iframe src="https://maps.google.com/maps?q=Colombo%2010,%20Sri%20Lanka&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">EcoXplore Adventures</h2>
+            <p>&copy; 2024 EcoXplore Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

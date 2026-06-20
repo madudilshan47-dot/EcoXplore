@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoXplore Adventures - Sustainable adventure tours using Bootstrap 5.">
+    <title>EcoXplore Adventures | Sustainable Adventure Tours</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="40" height="40">
+                EcoXplore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container text-center reveal">
+            <h1 class="display-2 fw-bold mb-4">Adventure with a Purpose.</h1>
+            <p class="lead mb-5 mx-auto" style="max-width: 700px;">Experience the raw beauty of nature through sustainable, eco-friendly adventure tours designed for the conscious explorer.</p>
+            <a href="tours.html" class="btn btn-accent btn-lg me-sm-3 mb-3 mb-sm-0">Explore Tours</a>
+            <a href="booking.html" class="btn btn-outline-light btn-lg rounded-pill px-4 py-3 fw-bold">Make an Inquiry</a>
+        </div>
+    </header>
+
+    <section class="py-5 reveal">
+        <div class="container text-center py-5">
+            <h2 class="display-5 mb-4" style="color: var(--primary);">Our Sustainable Mission</h2>
+            <p class="lead mx-auto" style="max-width: 850px;">At EcoXplore Adventures, we believe that exploration shouldn't come at the cost of the environment. Our tours are meticulously designed to minimize carbon footprints and support local wildlife conservation.</p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-dark text-white reveal">
+        <div class="container py-4">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3">
+                    <h3 class="display-4 fw-bold" style="color: var(--accent);">50+</h3>
+                    <p class="mb-0">Protected Habitats</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="display-4 fw-bold" style="color: var(--accent);">12k</h3>
+                    <p class="mb-0">Trees Planted</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="display-4 fw-bold" style="color: var(--accent);">100%</h3>
+                    <p class="mb-0">Eco-Certified</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="display-4 fw-bold" style="color: var(--accent);">5k</h3>
+                    <p class="mb-0">Happy Explorers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 reveal">
+        <div class="container py-5">
+            <h2 class="text-center mb-5">Featured Adventures</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card tour-card glass h-100 reveal">
+                        <img src="images/hiking.png" class="card-img-top" alt="Hiking" style="height: 250px; object-fit: cover;">
+                        <div class="card-body p-4">
+                            <h3 class="h4">Peak Discovery Hike</h3>
+                            <p class="text-muted">Explore rugged mountain trails and discover hidden vistas. Perfect for nature lovers.</p>
+                            <a href="tours.html" class="btn btn-primary mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card tour-card glass h-100 reveal">
+                        <img src="images/camping.png" class="card-img-top" alt="Camping" style="height: 250px; object-fit: cover;">
+                        <div class="card-body p-4">
+                            <h3 class="h4">Starry Nights Camping</h3>
+                            <p class="text-muted">Stay in our 100% sustainable campsite under a blanket of stars. Relax and recharge.</p>
+                            <a href="tours.html" class="btn btn-primary mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card tour-card glass h-100 reveal">
+                        <img src="images/rafting.png" class="card-img-top" alt="Rafting" style="height: 250px; object-fit: cover;">
+                        <div class="card-body p-4">
+                            <h3 class="h4">Wild Waters Rafting</h3>
+                            <p class="text-muted">An adrenaline-filled journey down clear blue rivers, guided by eco-experts.</p>
+                            <a href="tours.html" class="btn btn-primary mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 reveal" style="background-color: var(--primary-light);">
+        <div class="container py-5">
+            <h2 class="text-center mb-5">Explorer Voices</h2>
+            <div id="testimonialSlider" class="glass p-5 rounded-4 mx-auto" style="max-width: 900px;">
+                <div class="testimonial-slide text-center">
+                    <p class="fs-4 fst-italic mb-3">"An absolutely life-changing experience. The balance between adventure and education was perfect."</p>
+                    <span class="fw-bold">- Emily J., Solo Traveler</span>
+                </div>
+                <div class="testimonial-slide text-center" style="display: none;">
+                    <p class="fs-4 fst-italic mb-3">"I've never felt so connected to nature. The guides were incredibly knowledgeable."</p>
+                    <span class="fw-bold">- Mark T., Photographer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 text-center">
+        <div class="container">
+            <h2 class="mb-4">EcoXplore Adventures</h2>
+            <p>&copy; 2024 EcoXplore Adventures. All rights reserved.</p>
+            <p class="small">Sustainable Tourism & Responsible Exploration.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+
+        let cur = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        setInterval(() => {
+            slides[cur].style.display = 'none';
+            cur = (cur + 1) % slides.length;
+            slides[cur].style.display = 'block';
+        }, 5000);
+    </script>
+</body>
+</html>

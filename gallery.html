@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View our gallery of adventure tours with Bootstrap 5.">
+    <title>Gallery | EcoXplore Adventures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .gallery-hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.7), rgba(46, 125, 50, 0.7)), url('images/river.png') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="40" height="40">
+                EcoXplore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="gallery-hero reveal text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Moments in Nature</h1>
+            <p class="lead">A visual journey through our most memorable sustainable adventures.</p>
+        </div>
+    </header>
+
+    <main class="container py-5 my-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" onclick="openLightbox('images/hiking.png')">
+                    <img src="images/hiking.png" alt="Hiking">
+                    <div class="gallery-overlay">Alpine Discovery</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" style="transition-delay: 0.1s;"
+                    onclick="openLightbox('images/camping.png')">
+                    <img src="images/camping.png" alt="Camping">
+                    <div class="gallery-overlay">Eco-Camp Nights</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" style="transition-delay: 0.2s;"
+                    onclick="openLightbox('images/13-800x600.jpg')">
+                    <img src="images/13-800x600.jpg" alt="Rafting">
+                    <div class="gallery-overlay">Wild Waters</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" style="transition-delay: 0.3s;"
+                    onclick="openLightbox('images/river.png')">
+                    <img src="images/river.png" alt="River">
+                    <div class="gallery-overlay">Crystal Canyons</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" style="transition-delay: 0.4s;"
+                    onclick="openLightbox('images/28-800x600.jpg')">
+                    <img src="images/28-800x600.jpg" alt="Forest">
+                    <div class="gallery-overlay">Emerald Woods</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item glass reveal" style="transition-delay: 0.5s;"
+                    onclick="openLightbox('images/29-800x600.jpg')">
+                    <img src="images/29-800x600.jpg" alt="Horizon">
+                    <div class="gallery-overlay">Infinite Horizons</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" onclick="closeLightbox()"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 2000;">
+        <span onclick="closeLightbox()"
+            style="position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer;">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged"
+            style="max-width: 90%; max-height: 85%; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+    </div>
+
+    <footer class="py-5 text-center bg-dark text-white-50">
+        <div class="container">
+            <h2 class="text-white mb-4">EcoXplore Adventures</h2>
+            <p>&copy; 2024 EcoXplore Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
