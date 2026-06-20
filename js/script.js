@@ -1,12 +1,12 @@
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBeU4_xP528Cxe6x5w5e3vqspSh0BbCL9o",
-  authDomain: "ecoxplore-70a42.firebaseapp.com",
-  projectId: "ecoxplore-70a42",
-  storageBucket: "ecoxplore-70a42.firebasestorage.app",
-  messagingSenderId: "822551001338",
-  appId: "1:822551001338:web:9471a68830fbc1ab607143",
-  measurementId: "G-E2MLEFQSD8"
+    apiKey: "AIzaSyBeU4_xP528Cxe6x5w5e3vqspSh0BbCL9o",
+    authDomain: "ecoxplore-70a42.firebaseapp.com",
+    projectId: "ecoxplore-70a42",
+    storageBucket: "ecoxplore-70a42.firebasestorage.app",
+    messagingSenderId: "822551001338",
+    appId: "1:822551001338:web:9471a68830fbc1ab607143",
+    measurementId: "G-E2MLEFQSD8"
 };
 
 // Initialize Firebase
@@ -88,7 +88,7 @@ function renderNavLinks(user) {
     if (!navContent) return;
 
     const navLinksContainer = navContent.querySelector('.navbar-nav');
-    
+
     const accountMarkup = user
         ? `<li class="nav-item ms-lg-2"><span class="badge bg-success py-2 px-3 rounded-pill">${(user.displayName || user.email || 'Explorer').split(' ')[0]}</span></li><li class="nav-item"><a class="nav-link text-danger" href="#" id="logoutLink">Logout</a></li>`
         : `<li class="nav-item ms-lg-2"><a class="btn btn-primary" href="signup.html">Explore Now</a></li>`;
