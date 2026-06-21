@@ -182,16 +182,19 @@ textarea:focus-visible {
     linear-gradient(rgba(35, 85, 44, 0.78), rgba(35, 85, 44, 0.78)),
     url("../images/forest.png") center/cover;
 }
+
 .tours-hero {
   background:
     linear-gradient(rgba(83, 64, 50, 0.78), rgba(83, 64, 50, 0.78)),
     url("../images/hiking.png") center/cover;
 }
+
 .gallery-hero {
   background:
     linear-gradient(rgba(25, 80, 68, 0.72), rgba(25, 80, 68, 0.72)),
     url("../images/river.png") center/cover;
 }
+
 .contact-hero {
   background:
     linear-gradient(rgba(35, 85, 44, 0.78), rgba(35, 85, 44, 0.78)),
@@ -326,6 +329,7 @@ textarea:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   .reveal {
     scroll-behavior: auto !important;
@@ -355,12 +359,15 @@ footer {
   .display-2 {
     font-size: 2.45rem;
   }
+
   .display-3 {
     font-size: 2.15rem;
   }
+
   .display-5 {
     font-size: 1.85rem;
   }
+
   .page-hero,
   .about-hero,
   .tours-hero,
@@ -369,9 +376,11 @@ footer {
     min-height: 280px;
     padding: 4rem 0;
   }
+
   .gallery-item {
     height: 260px;
   }
+
   .glass.p-5,
   .p-5 {
     padding: 1.5rem !important;
@@ -427,12 +436,10 @@ footer {
 }
 
 .booking-reasons-panel {
-  background: linear-gradient(
-    160deg,
-    #17391f 0%,
-    #1f5a2b 58%,
-    #14301b 100%
-  ) !important;
+  background: linear-gradient(160deg,
+      #17391f 0%,
+      #1f5a2b 58%,
+      #14301b 100%) !important;
   color: var(--white);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--shadow);

@@ -1,4 +1,4 @@
-// Firebase configuration
+
 const firebaseConfig = {
     apiKey: "AIzaSyBeU4_xP528Cxe6x5w5e3vqspSh0BbCL9o",
     authDomain: "ecoxplore-70a42.firebaseapp.com",
@@ -9,7 +9,7 @@ const firebaseConfig = {
     measurementId: "G-E2MLEFQSD8"
 };
 
-// Initialize Firebase
+
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
@@ -114,7 +114,6 @@ function renderNavLinks(user) {
 
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        // Replace node to clear existing listeners
         const newThemeToggle = themeToggle.cloneNode(true);
         themeToggle.replaceWith(newThemeToggle);
         newThemeToggle.addEventListener('click', toggleTheme);
@@ -156,14 +155,14 @@ function initForms() {
             if (!validateRequired(signupForm)) return setMessage(signupForm, 'Please complete every required field correctly.', 'error');
             const password = document.getElementById('regPassword').value;
             if (password.length < 6) return setMessage(signupForm, 'Password must contain at least 6 characters.', 'error');
-            
+
             const btn = signupForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.textContent = 'Creating Account...';
             btn.disabled = true;
 
             const result = await signup(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), password);
-            
+
             btn.textContent = originalText;
             btn.disabled = false;
 
@@ -180,14 +179,14 @@ function initForms() {
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             if (!validateRequired(loginForm)) return setMessage(loginForm, 'Enter your email and password.', 'error');
-            
+
             const btn = loginForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.textContent = 'Logging In...';
             btn.disabled = true;
 
             const result = await login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value);
-            
+
             btn.textContent = originalText;
             btn.disabled = false;
 
@@ -205,7 +204,7 @@ function initForms() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             if (selectedDate < today) return setMessage(bookingForm, 'Preferred date must be today or a future date.', 'error');
-            
+
             const btn = bookingForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.textContent = 'Submitting...';
@@ -236,7 +235,7 @@ function initForms() {
         contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             if (!validateRequired(contactForm)) return setMessage(contactForm, 'Please fill in the contact form correctly.', 'error');
-            
+
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.textContent = 'Sending...';
