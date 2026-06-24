@@ -1,22 +1,8 @@
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBeU4_xP528Cxe6x5w5e3vqspSh0BbCL9o",
-    authDomain: "ecoxplore-70a42.firebaseapp.com",
-    projectId: "ecoxplore-70a42",
-    storageBucket: "ecoxplore-70a42.firebasestorage.app",
-    messagingSenderId: "822551001338",
-    appId: "1:822551001338:web:9471a68830fbc1ab607143",
-    measurementId: "G-E2MLEFQSD8"
-};
-
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const auth = firebase.auth();
-const db = firebase.firestore();
-
+const USERS_KEY = 'ecoxplore_users';
+const SESSION_KEY = 'ecoxplore_session';
 const THEME_KEY = 'ecoxplore_theme';
+
+
 
 function getPreferredTheme() {
     const savedTheme = localStorage.getItem(THEME_KEY);
@@ -42,55 +28,60 @@ function toggleTheme() {
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
 }
 
-async function saveToDatabase(collection, data) {
+function getStoredList(key) {
     try {
-        data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
-        await db.collection(collection).add(data);
-        return { success: true };
-    } catch (error) {
-        console.error("Error saving document: ", error);
-        return { success: false, message: error.message };
+        return JSON.parse(localStorage.getItem(key)) || [];
+    } catch {
+        return [];
     }
 }
 
-async function signup(name, email, password) {
+function getSession() {
     try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        await userCredential.user.updateProfile({
-            displayName: name
-        });
-        return { success: true };
-    } catch (error) {
-        return { success: false, message: error.message };
+        return JSON.parse(localStorage.getItem(SESSION_KEY));
+    } catch {
+        return null;
     }
 }
 
-async function login(email, password) {
-    try {
-        await auth.signInWithEmailAndPassword(email, password);
-        return { success: true };
-    } catch (error) {
-        return { success: false, message: 'Please check your email and password. ' + error.message };
-    }
+function saveToDatabase(collection, data) {
+    const items = getStoredList(collection);
+    items.push({ ...data, timestamp: new Date().toISOString() });
+    localStorage.setItem(collection, JSON.stringify(items));
+    return { success: true };
 }
 
-async function logout() {
-    try {
-        await auth.signOut();
-        window.location.href = 'index.html';
-    } catch (error) {
-        console.error("Logout error", error);
+function signup(name, email, password) {
+    const users = getStoredList(USERS_KEY);
+    if (users.some((user) => user.email.toLowerCase() === email.toLowerCase())) {
+        return { success: false, message: 'An account already exists for this email.' };
     }
+    users.push({ name, email, password });
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    return { success: true };
 }
 
-function renderNavLinks(user) {
+function login(email, password) {
+    const users = getStoredList(USERS_KEY);
+    const user = users.find((item) => item.email.toLowerCase() === email.toLowerCase() && item.password === password);
+    if (!user) return { success: false, message: 'Please check your email and password.' };
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ name: user.name, email: user.email }));
+    return { success: true };
+}
+
+function logout() {
+    localStorage.removeItem(SESSION_KEY);
+    window.location.href = 'index.html';
+}
+
+function updateNav() {
     const navContent = document.getElementById('navbarNav');
     if (!navContent) return;
 
     const navLinksContainer = navContent.querySelector('.navbar-nav');
-
-    const accountMarkup = user
-        ? `<li class="nav-item ms-lg-2"><span class="badge bg-success py-2 px-3 rounded-pill">${(user.displayName || user.email || 'Explorer').split(' ')[0]}</span></li><li class="nav-item"><a class="nav-link text-danger" href="#" id="logoutLink">Logout</a></li>`
+    const session = getSession();
+    const accountMarkup = session
+        ? `<li class="nav-item ms-lg-2"><span class="badge bg-success py-2 px-3 rounded-pill">${session.name.split(' ')[0]}</span></li><li class="nav-item"><a class="nav-link text-danger" href="#" id="logoutLink">Logout</a></li>`
         : `<li class="nav-item ms-lg-2"><a class="btn btn-primary" href="signup.html">Explore Now</a></li>`;
 
     navLinksContainer.innerHTML = `
@@ -114,17 +105,9 @@ function renderNavLinks(user) {
 
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        const newThemeToggle = themeToggle.cloneNode(true);
-        themeToggle.replaceWith(newThemeToggle);
-        newThemeToggle.addEventListener('click', toggleTheme);
+        themeToggle.addEventListener('click', toggleTheme);
         applyTheme(document.documentElement.getAttribute('data-theme') || getPreferredTheme());
     }
-}
-
-function updateNav() {
-    auth.onAuthStateChanged((user) => {
-        renderNavLinks(user);
-    });
 }
 
 function setMessage(form, message, type = 'success') {
@@ -150,46 +133,24 @@ function validateRequired(form) {
 function initForms() {
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
-        signupForm.addEventListener('submit', async (event) => {
+        signupForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (!validateRequired(signupForm)) return setMessage(signupForm, 'Please complete every required field correctly.', 'error');
             const password = document.getElementById('regPassword').value;
             if (password.length < 6) return setMessage(signupForm, 'Password must contain at least 6 characters.', 'error');
-
-            const btn = signupForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Creating Account...';
-            btn.disabled = true;
-
-            const result = await signup(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), password);
-
-            btn.textContent = originalText;
-            btn.disabled = false;
-
+            const result = signup(document.getElementById('regName').value.trim(), document.getElementById('regEmail').value.trim(), password);
             if (!result.success) return setMessage(signupForm, result.message, 'error');
-            setMessage(signupForm, 'Account created successfully! You are now logged in.', 'success');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
+            setMessage(signupForm, 'Account created. You can now log in.', 'success');
+            if (window.toggleAuth) window.toggleAuth('login');
         });
     }
 
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
-        loginForm.addEventListener('submit', async (event) => {
+        loginForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (!validateRequired(loginForm)) return setMessage(loginForm, 'Enter your email and password.', 'error');
-
-            const btn = loginForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Logging In...';
-            btn.disabled = true;
-
-            const result = await login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value);
-
-            btn.textContent = originalText;
-            btn.disabled = false;
-
+            const result = login(document.getElementById('loginEmail').value.trim(), document.getElementById('loginPassword').value);
             if (!result.success) return setMessage(loginForm, result.message, 'error');
             window.location.href = 'index.html';
         });
@@ -197,20 +158,14 @@ function initForms() {
 
     const bookingForm = document.getElementById('bookingForm');
     if (bookingForm) {
-        bookingForm.addEventListener('submit', async (event) => {
+        bookingForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (!validateRequired(bookingForm)) return setMessage(bookingForm, 'Please complete the booking details correctly.', 'error');
             const selectedDate = new Date(document.getElementById('preferredDate').value);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             if (selectedDate < today) return setMessage(bookingForm, 'Preferred date must be today or a future date.', 'error');
-
-            const btn = bookingForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Submitting...';
-            btn.disabled = true;
-
-            const result = await saveToDatabase('bookings', {
+            saveToDatabase('bookings', {
                 name: document.getElementById('bookName').value.trim(),
                 email: document.getElementById('bookEmail').value.trim(),
                 phone: document.getElementById('bookPhone').value.trim(),
@@ -219,12 +174,6 @@ function initForms() {
                 travelers: document.getElementById('travelers').value,
                 notes: document.getElementById('specialReq').value.trim()
             });
-
-            btn.textContent = originalText;
-            btn.disabled = false;
-
-            if (!result.success) return setMessage(bookingForm, result.message, 'error');
-
             bookingForm.reset();
             setMessage(bookingForm, 'Booking inquiry sent. Our team will contact you soon.', 'success');
         });
@@ -232,27 +181,15 @@ function initForms() {
 
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', async (event) => {
+        contactForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (!validateRequired(contactForm)) return setMessage(contactForm, 'Please fill in the contact form correctly.', 'error');
-
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-
-            const result = await saveToDatabase('messages', {
+            saveToDatabase('messages', {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
                 subject: document.getElementById('subject').value.trim(),
                 message: document.getElementById('message').value.trim()
             });
-
-            btn.textContent = originalText;
-            btn.disabled = false;
-
-            if (!result.success) return setMessage(contactForm, result.message, 'error');
-
             contactForm.reset();
             setMessage(contactForm, 'Message sent. Thank you for contacting EcoXplore.', 'success');
         });
